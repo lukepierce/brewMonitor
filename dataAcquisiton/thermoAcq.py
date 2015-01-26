@@ -3,7 +3,6 @@ import json
 from time import localtime, strftime
 
 brewname = "My Brown Nuts"
-f = open('workfile', 'w')
 ser = serial.Serial('/dev/ttyACM0', 9600)
 datapoint = {'temperature': None,
              'timestamp': None,
@@ -12,6 +11,7 @@ datapoint = {'temperature': None,
 while True:
     datapoint['temperature'] = ser.readline()
     datapoint['timestamp'] = strftime("%Y-%m-%d %H:%M:%S", localtime())
+    datapointjson = json.dumps(datapoint)
 
 f.close()
 ser.close()
