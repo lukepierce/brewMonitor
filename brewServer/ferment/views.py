@@ -9,13 +9,16 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.parsers import JSONParser
 from django.utils.six import BytesIO
-
+from django.shortcuts import render_to_response
 
 
 
 def home(request):
     return HttpResponse('hello world')
 
+def viewData(request):
+    return render_to_response('data.html',  {'data': Data.objects.all()})
+    
 class thermo(APIView):
     def put(self, request,format=None):
         stream = BytesIO(request.read())
