@@ -21,6 +21,7 @@ if __name__ == '__main__':
     http_conn = http.client.HTTPConnection('localhost', 8000)
     while True:
         line = serial_conn.readline()
+        line = str(line)
         match = decimal_re.search(line)
         datapoint['temperature'] = match.group('decimal')
         datapointjson = json.dumps(datapoint)
