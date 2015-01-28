@@ -1,3 +1,4 @@
 static/
 *.pyc
 __pycache__
+brewServer/ferment/migrations/
