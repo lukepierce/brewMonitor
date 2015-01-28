@@ -1,3 +1,5 @@
+import http.client
+import urllib.parse
 import serial
 import json
 from time import localtime
@@ -8,10 +10,11 @@ datapoint = {'temperature': None,
              'timestamp': None,
              'brewname': brewname}
 
-while True:
-    datapoint['temperature'] = ser.readline()
-    datapoint['timestamp'] = localtime()
-    datapointjson = json.dumps(datapoint)
+if __name__ == '__main__'
+    while True:
+        datapoint['temperature'] = ser.readline()
+        datapoint['timestamp'] = localtime()
+        datapointjson = json.dumps(datapoint)
 
-f.close()
-ser.close()
+    f.close()
+    ser.close()
