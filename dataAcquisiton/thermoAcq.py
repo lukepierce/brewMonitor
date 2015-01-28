@@ -8,19 +8,20 @@ from time import localtime
 
 #Global State
 tty = 'ttyACM0'
+datapoint = {}
 datapoint['brew_name'] = "My Brown Nuts"
 headers = {"Content-Type" : 'application/x-www-form-urlencoded', 'Accept': 'application/json'}
 
-if __name__ == '__main__'
+if __name__ == '__main__':
     serial_conn = serial.Serial('/dev/' + tty, 9600)
     http_conn = http.client.HTTPConnection('localhost', 8000)
     while True:
-        datapoint['temperature'] = ser.readline()
+        datapoint['temperature'] = serial_conn.readline()
         datapointjson = json.dumps(datapoint)
-        conn.request("PUT", "/thermo/", datapoint, headers)
+        conn.request("PUT", "/thermo/", datapointjson, headers)
         response = conn.getresponse()
         str_response = response.readall().decode('utf-8')
         print(str_response)
         print(response.status, response.reason)
-    f.close()
-    conn.close()
+    serial_conn.close()
+    http_conn.close()
