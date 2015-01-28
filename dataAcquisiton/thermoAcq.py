@@ -6,6 +6,7 @@ from time import localtime
 import re
 
 ##TODO: Add timestamp to data points, model, serializer
+##TODO: Remove MAX test print from Arduino Sketch
 
 #Global State
 decimal_re = re.compile(r"(?P<decimal>[0-9.]+)")
@@ -19,7 +20,7 @@ if __name__ == '__main__':
     serial_conn.readline() #Gets the first line which is a test print
     http_conn = http.client.HTTPConnection('localhost', 8000)
     while True:
-        line = serial_conn.readline())
+        line = serial_conn.readline()
         match = decimal_re.search(line)
         datapoint['temperature'] = match.group('decimal')
         datapointjson = json.dumps(datapoint)
