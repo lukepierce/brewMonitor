@@ -4,23 +4,23 @@ import serial
 import json
 from time import localtime
 
-datapoint['brew_name'] = "My Brown Nuts"
+##TODO: Add timestamp to data points, model, serializer
 
-def serialbox(tty):
-    '''
-    Takes a 'tty' connection as input
-    Returns a serial connection object
-    Opens a serial connection to the arduino
-    '''
-    ser = serial.Serial('/dev/' + tty, 9600)
-    return ser
+#Global State
+tty = 'ttyACM0'
+datapoint['brew_name'] = "My Brown Nuts"
+headers = {"Content-Type" : 'application/x-www-form-urlencoded', 'Accept': 'application/json'}
 
 if __name__ == '__main__'
-    conn = serialbox('ttyACM0')
+    serial_conn = serial.Serial('/dev/' + tty, 9600)
+    http_conn = http.client.HTTPConnection('localhost', 8000)
     while True:
         datapoint['temperature'] = ser.readline()
-        datapoint['timestamp'] = localtime()
         datapointjson = json.dumps(datapoint)
-
+        conn.request("PUT", "/thermo/", datapoint, headers)
+        response = conn.getresponse()
+        str_response = response.readall().decode('utf-8')
+        print(str_response)
+        print(response.status, response.reason)
     f.close()
     conn.close()
