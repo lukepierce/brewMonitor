@@ -3,6 +3,7 @@ import urllib.parse
 import serial
 import json
 from time import localtime
+from ast import literal_eval
 
 ##TODO: Add timestamp to data points, model, serializer
 
@@ -17,7 +18,8 @@ if __name__ == '__main__':
     serial_conn.readline() #Gets the first line which is a test print
     http_conn = http.client.HTTPConnection('localhost', 8000)
     while True:
-        datapoint['temperature'] = serial_conn.readline()
+        #literal eval strips the escape characters from readline
+        datapoint['temperature'] = literal_eval(serial_conn.readline())
         datapointjson = json.dumps(datapoint)
         conn.request("PUT", "/thermo/", datapointjson, headers)
         response = conn.getresponse()
