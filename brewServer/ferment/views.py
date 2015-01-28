@@ -1,20 +1,20 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 #Imports for using thermoAcq
-import serial
 import json
 from time import localtime
+from ferment.models import Data
 # Create your views here.
+from rest_framework.response import Response
+
+
 
 def home(request):
     return HttpResponse('hello world')
 
-def thermo(request):
-    brewname = "My Brown Nuts"
-    ser = serial.Serial('/dev/ttyACM0', 9600)
-    datapoint = {'temperature': None,
-                 'timestamp': None,
-                 'brewname': brewname}
-    f.close()
-    ser.close()
-    return HttpResponse(datapoint['brewname'])
+def thermo(APIView):
+    def put(self, format=None):
+        stream = BytesIO(request.read())
+        data = JSONParser().parse(stream)
+        Data.objects.create(temperature=data['temperature'], brew_name=data['brew_name'])
+        return Response("It fucking works")
