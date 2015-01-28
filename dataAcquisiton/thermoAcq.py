@@ -3,11 +3,12 @@ import urllib.parse
 import serial
 import json
 from time import localtime
-from ast import literal_eval
+import re
 
 ##TODO: Add timestamp to data points, model, serializer
 
 #Global State
+decimal_re = re.compile(r"(?P<decimal>[0-9.]+)")
 tty = 'ttyACM0'
 datapoint = {}
 datapoint['brew_name'] = "My Brown Nuts"
@@ -18,8 +19,9 @@ if __name__ == '__main__':
     serial_conn.readline() #Gets the first line which is a test print
     http_conn = http.client.HTTPConnection('localhost', 8000)
     while True:
-        #literal eval strips the escape characters from readline
-        datapoint['temperature'] = literal_eval(serial_conn.readline())
+        line = serial_conn.readline())
+        match = decimal_re.search(line)
+        datapoint['temperature'] = match.group('decimal')
         datapointjson = json.dumps(datapoint)
         conn.request("PUT", "/thermo/", datapointjson, headers)
         response = conn.getresponse()
