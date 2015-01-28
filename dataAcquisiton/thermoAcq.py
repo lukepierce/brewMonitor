@@ -14,6 +14,7 @@ headers = {"Content-Type" : 'application/x-www-form-urlencoded', 'Accept': 'appl
 
 if __name__ == '__main__':
     serial_conn = serial.Serial('/dev/' + tty, 9600)
+    serial_conn.readline() #Gets the first line which is a test print
     http_conn = http.client.HTTPConnection('localhost', 8000)
     while True:
         datapoint['temperature'] = serial_conn.readline()
