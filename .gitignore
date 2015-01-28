@@ -1,1 +1,3 @@
 static/
+*.pyc
+__pycache__

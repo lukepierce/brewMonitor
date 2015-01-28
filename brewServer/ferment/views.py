@@ -19,7 +19,7 @@ def home(request):
 class thermo(APIView):
     def put(self, request,format=None):
         stream = BytesIO(request.read())
-        print(stream)
+        print(str(stream))
         data = JSONParser().parse(stream)
         print(data)
         Data.objects.create(temperature=data['temperature'], brew_name=data['brew_name'])

@@ -1,3 +1,4 @@
 from django.contrib import admin
-
-# Register your models here.
+from ferment.models import *
+# Register you
+admin.site.register(Data)
