@@ -6,6 +6,8 @@ from time import localtime
 from ferment.models import Data
 # Create your views here.
 from rest_framework.response import Response
+from rest_framework.views import APIView
+
 
 
 
