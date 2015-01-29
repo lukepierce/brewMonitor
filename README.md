@@ -1,4 +1,6 @@
-Components
-Webserver: nginx
-Backend Framework: Django
-RESTful API: Django Rest Framework
+Components<br>
+<ul>
+<li>Webserver: nginx</li>
+<li>Backend Framework: Django
+<li>RESTful API: Django Rest Framework
+</ul>
