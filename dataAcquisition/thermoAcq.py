@@ -26,7 +26,7 @@ if __name__ == '__main__':
         line = str(line)
         match = decimal_re.search(line)
         datapoint['temperature'] = match.group('decimal')
-        datapoint['time'] = datetime.datetime.now()
+        datapoint['time'] = datetime.datetime.now().isoformat()
         datapointjson = json.dumps(datapoint)
         http_conn.request("PUT", "/thermo/", datapointjson, headers)
         response = http_conn.getresponse()
