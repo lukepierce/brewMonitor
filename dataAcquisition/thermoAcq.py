@@ -20,7 +20,7 @@ headers = {"Content-Type" : 'application/x-www-form-urlencoded', 'Accept': 'appl
 if __name__ == '__main__':
     serial_conn = serial.Serial('/dev/' + tty, 9600)
     serial_conn.readline() #Gets the first line which is a test print
-    http_conn = http.client.HTTPConnection(http_conn_addr + http_conn_port)
+    http_conn = http.client.HTTPConnection(http_conn_addr + ':' + http_conn_port)
     while True:
         line = serial_conn.readline()
         line = str(line)
