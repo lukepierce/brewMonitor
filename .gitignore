@@ -1,8 +1,8 @@
+#Project Specific
 static/
-*.py[cod]
-__pycache__/
 brewServer/ferment/migrations/
 
+#GitHub Boilerplate GitIgnore
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
