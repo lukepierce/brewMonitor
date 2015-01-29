@@ -18,8 +18,8 @@ def home(request):
 
 def viewData(request):
     return render_to_response('data.html',  {'data': Data.objects.all()})
-    
-class thermo(APIView):
+
+class Thermo(APIView):
     def put(self, request,format=None):
         stream = BytesIO(request.read())
         print(str(stream))
