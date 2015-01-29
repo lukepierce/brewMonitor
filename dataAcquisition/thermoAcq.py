@@ -2,7 +2,7 @@ import http.client
 import urllib.parse
 import serial
 import json
-from time import localtime
+import datetime
 import re
 
 ##TODO: Add timestamp to data points, model, serializer
@@ -26,6 +26,7 @@ if __name__ == '__main__':
         line = str(line)
         match = decimal_re.search(line)
         datapoint['temperature'] = match.group('decimal')
+        datapoint['time'] = datetime.datetime.now()
         datapointjson = json.dumps(datapoint)
         http_conn.request("PUT", "/thermo/", datapointjson, headers)
         response = http_conn.getresponse()
