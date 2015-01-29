@@ -25,5 +25,5 @@ class Thermo(APIView):
         print(str(stream))
         data = JSONParser().parse(stream)
         print(data)
-        Data.objects.create(temperature=data['temperature'], brew_name=data['brew_name'])
+        Data.objects.create(temperature=data['temperature'], brew_name=data['brew_name'], time=data['time'])
         return Response("It fucking works")
