@@ -12,7 +12,7 @@ from rest_framework.parsers import JSONParser
 from django.utils.six import BytesIO
 
 def home(request):
-    html = "<html><body><a href=data, bitch>data</a></body></html>"
+    html = "<html><body><a href=data>data</a></body></html>"
     return HttpResponse(html)
 
 def viewData(request):
