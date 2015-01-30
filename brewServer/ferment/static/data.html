@@ -1,11 +1,11 @@
 <html>
-<head><title>Ordering notice</title></head>
+<head><title>bEeR RuLeZ</title></head>
 
 <body>
 
 <ul>
-{% for point in data %}
-    <li>{{ point.brew_name }} : {{ point.temperature }}</li>
+{% for point in data|dictsortreversed:"time" %}
+    <li>{{point.time}} - {{ point.brew_name }} : {{ point.temperature }}</li>
 {% endfor %}
 </ul>
 
