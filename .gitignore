@@ -1,5 +1,4 @@
 #Project Specific
-static/
 brewServer/ferment/migrations/
 
 #GitHub Boilerplate GitIgnore
