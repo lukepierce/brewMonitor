@@ -1,20 +1,19 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-#Imports for using thermoAcq
+from django.shortcuts import render_to_response
+# Imports for using thermoAcq
 import json
 from time import localtime
 from ferment.models import Data
-# Create your views here.
+# Rest Framework Imports
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.parsers import JSONParser
 from django.utils.six import BytesIO
-from django.shortcuts import render_to_response
-
-
 
 def home(request):
-    return HttpResponse('hello world')
+    html = "<html><body><a href="data, bitch">data</a></body></html>"
+    return HttpResponse(html)
 
 def viewData(request):
     return render_to_response('data.html',  {'data': Data.objects.all()})
