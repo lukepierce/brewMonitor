@@ -23,7 +23,7 @@ def viewData(request):
     return render_to_response('data.html',  {'data': last_hundred})
 
 def viewChart(request):
-    return render_to_response('chart.html',  {'data': Data.objects.all()})
+    return render_to_response('chart.html',  {'data': Data.objects.all()[:100]})
 
 
 class Thermo(APIView):
