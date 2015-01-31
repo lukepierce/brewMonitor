@@ -19,7 +19,8 @@ def home(request):
     return HttpResponse(html)
 
 def viewData(request):
-    return render_to_response('data.html',  {'data': Data.objects.latest('time')})
+    last_hundred = Data.objects.filter(time=time).order_by('-id')[:100]
+    return render_to_response('data.html',  {'data': last_hundred})
 
 def viewChart(request):
     return render_to_response('chart.html',  {'data': Data.objects.all()})
