@@ -10,7 +10,7 @@ import re
 
 #Global State
 decimal_re = re.compile(r"(?P<decimal>[0-9.]+)")
-http_conn_addr = '192.168.1.101'
+http_conn_addr = '192.168.1.102'
 http_conn_port = '80'
 tty = 'ttyACM0'
 datapoint = {}
