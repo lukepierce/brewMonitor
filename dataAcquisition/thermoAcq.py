@@ -5,7 +5,6 @@ import json
 import datetime
 import re
 
-##TODO: Add timestamp to data points, model, serializer
 ##TODO: Remove MAX test print from Arduino Sketch
 
 #Global State
@@ -28,8 +27,12 @@ if __name__ == '__main__':
         datapoint['temperature'] = match.group('decimal')
         datapoint['time'] = datetime.datetime.now().isoformat()
         datapointjson = json.dumps(datapoint)
+    try:
         http_conn.request("PUT", "/thermo/", datapointjson, headers)
         response = http_conn.getresponse()
+    except BadStatusLine:
+        print("Bad Status Line Exception Handled")
+    else:
         str_response = response.readall().decode('utf-8')
         print(str_response)
         print(response.status, response.reason)
