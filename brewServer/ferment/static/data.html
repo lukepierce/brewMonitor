@@ -1,0 +1,13 @@
+<html>
+<head><title>bEeR RuLeZ</title></head>
+
+<body>
+
+<ul>
+{% for point in data|dictsortreversed:"time" %}
+    <li>{{point.time}} - {{ point.brew_name }} : {{ point.temperature }}</li>
+{% endfor %}
+</ul>
+
+</body>
+</html>

@@ -5,7 +5,7 @@ upstream app {
 
 server {
 	listen 80;
-	server_name 192.168.1.101;
+	server_name 192.168.1.101 dyndns.andersson.io;
 	charset utf-8;
 	client_max_body_size 75M;
 	access_log /var/www/brewMonitor/logs/ngnix-access.log;
