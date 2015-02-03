@@ -18,9 +18,15 @@ if __name__ == '__main__'
         datapoint['temperature'] = ser.readline()
         datapointjson = json.dumps(datapoint)
         conn.request("PUT", "/thermo/", datapoint, headers)
-        response = conn.getresponse()
-        str_response = response.readall().decode('utf-8')
-        print(str_response)
-        print(response.status, response.reason)
+        try:
+            response = conn.getresponse()
+        except BadStatusLine:
+            print("BadStatusLine Exception Handled. Handled that shit.")
+        except:
+            print("I don't know whats going on.")
+        else:
+            str_response = response.readall().decode('utf-8')
+            print(str_response)
+            print(response.status, response.reason)
     f.close()
     conn.close()
